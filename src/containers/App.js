@@ -9,19 +9,19 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      title: ""
+      title: "Eliava's Hookah"
     };
   }
 
-  getTitle() {
-    return fetch("http://localhost:8081/getInfo")
-      .then(res => res.json())
-      .then(s => s.title);
-  }
+  //   getTitle() {
+  //     return fetch("http://localhost:8081/getInfo")
+  //       .then(res => res.json())
+  //       .then(s => s.title);
+  //   }
 
   async componentDidMount() {
-    const title = await this.getTitle();
-    this.setState({ title, loading: false });
+    // const title = await this.getTitle();
+    // this.setState({ title, loading: false });
   }
 
   render() {

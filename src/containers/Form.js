@@ -15,7 +15,7 @@ export default class Form extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     console.log("value = ", this.state);
-    fetch("http://localhost:8081/send", {
+    fetch("http://185.178.47.62:8081/send", {
       method: "POST",
       headers: {
         Accept: "application/json",
