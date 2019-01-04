@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 const transporter = require("./utils/transporter");
 const bodyParser = require("body-parser");
 
-Database._connect();
+// Database._connect();
 
 // parse application/json
 app.use(bodyParser.json());
@@ -56,6 +56,10 @@ app.post("/send", (req, res) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.listen(8081, function() {
-  console.log("Example app listening on port 3000!");
+  console.log("Example app listening on port 8081!");
 });
