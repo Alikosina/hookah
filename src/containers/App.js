@@ -22,6 +22,9 @@ export default class App extends React.Component {
   async componentDidMount() {
     // const title = await this.getTitle();
     // this.setState({ title, loading: false });
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 1000);
   }
 
   render() {
