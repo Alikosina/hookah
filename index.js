@@ -42,7 +42,9 @@ app.post("/send", (req, res) => {
     from: "eliavahookah@gmail.com", // sender address
     to: "eliavahookah@gmail.com", // list of receivers
     subject: "Subject of your email", // Subject line
-    html: `<p>Мне нужно ${req.body.count} кальянов</p>` // plain text body
+    html: `<p>Имя: ${req.body.name}</p><p>${req.body.phone}</p><p>Мне нужно ${
+      req.body.count
+    } кальянов</p>` // plain text body
   };
 
   // send mail with defined transport object

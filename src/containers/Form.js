@@ -1,19 +1,30 @@
 import * as React from "react";
+import { connect } from "react-redux";
+import "./Form.scss";
 
-export default class Form extends React.Component {
+class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0
+      phone: "",
+      name: "",
+      active: false
     };
   }
-  onCountChange = v => {
-    const count = v.target.value;
-    this.setState({ count });
+  onPhoneChange = e => {
+    const phone = e.target.value;
+    this.setState({ phone });
+  };
+
+  onNameChange = e => {
+    const name = e.target.value;
+    this.setState({ name });
   };
 
   onSubmit = e => {
     e.preventDefault();
+    const { phone, name } = this.state;
+    const { products } = this.props;
     console.log("value = ", this.state);
     fetch("http://185.178.47.62:8081/send", {
       method: "POST",
@@ -21,21 +32,59 @@ export default class Form extends React.Component {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({ phone, name, products })
     });
   };
+
+  handleClick = () => {
+    this.setState({
+      active: true
+    });
+  };
+
   render() {
+    const { active, phone, name } = this.state;
+    const { totalPrice } = this.props;
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          id="count"
-          type="text"
-          value={this.state.count}
-          onChange={this.onCountChange}
-          placeholder="количество"
-        />
-        <input type="submit" value="Отправить" />
-      </form>
+      <React.Fragment>
+        <div className="checkout-button-container">
+          <button
+            onClick={this.handleClick}
+            disabled={totalPrice === 0}
+            className="checkout-button"
+          >
+            Оформить заказ
+          </button>
+        </div>
+        {active && (
+          <form className="form" onSubmit={this.onSubmit}>
+            <label htmlFor="phone">Телефон</label>
+            <input
+              id="phone"
+              type="text"
+              value={phone}
+              onChange={this.onPhoneChange}
+              placeholder="количество"
+            />
+            <label htmlFor="name">Имя</label>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={this.onNameChange}
+              placeholder="количество"
+            />
+            <input type="submit" value="Отправить" />
+          </form>
+        )}
+      </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  totalPrice: state.totalPrice,
+  products: state.products
+});
+
+export default connect(mapStateToProps)(Form);

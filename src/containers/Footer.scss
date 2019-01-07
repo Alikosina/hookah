@@ -1,0 +1,14 @@
+.footer {
+  padding: 20px 70px;
+  border-top: 1px solid #fff;
+  font-family: "Roboto";
+  @media only screen and (max-width: 375px) {
+    padding: 20px 10px;
+  }
+  &__phone {
+    &__link {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}
