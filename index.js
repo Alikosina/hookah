@@ -39,9 +39,10 @@ const createText = products => {
   const nextProducts = products.filter(p => p.count > 0);
   let str = "";
   nextProducts.forEach(product => {
-    str += `Тип кальяна - ${product.tile}, количество - ${
+    console.log("product = ", product);
+    str += `Тип кальяна - ${product.title}, количество - ${
       product.count
-    }, вкус - ${product.taste}.`;
+    }, вкус - ${product.taste.label}.`;
   });
   return str;
 };
