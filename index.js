@@ -37,8 +37,8 @@ app.get("/getInfo", (req, res) => {
 
 const createText = products => {
   const nextProducts = products.filter(p => p.count > 0);
-  const str = "";
-  nextProducts.forEach(function(product) {
+  let str = "";
+  nextProducts.forEach(product => {
     str += `Тип кальяна - ${product.tile}, количество - ${
       product.count
     }, вкус - ${product.taste}.`;
