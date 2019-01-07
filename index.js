@@ -35,6 +35,17 @@ app.get("/getInfo", (req, res) => {
   });
 });
 
+const createText = products => {
+  const nextProducts = products.filter(p => p.count > 0);
+  const str = "";
+  nextProducts.forEach(product => {
+    str += `Тип кальяна - ${product.tile}, количество - ${
+      product.count
+    }, вкус - ${product.taste}.`;
+  });
+  return str;
+};
+
 app.post("/send", (req, res) => {
   console.log("req =", req.body);
   // setup email data with unicode symbols
@@ -42,9 +53,9 @@ app.post("/send", (req, res) => {
     from: "eliavahookah@gmail.com", // sender address
     to: "eliavahookah@gmail.com", // list of receivers
     subject: "Subject of your email", // Subject line
-    html: `<p>Имя: ${req.body.name}</p><p>${req.body.phone}</p><p>Мне нужно ${
-      req.body.count
-    } кальянов</p>` // plain text body
+    html: `<p>Имя: ${req.body.name}</p><p>${req.body.phone}</p><p>${createText(
+      req.body.products
+    )}</p>` // plain text body
   };
 
   // send mail with defined transport object
