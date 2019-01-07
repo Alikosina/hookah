@@ -42,7 +42,7 @@ const createText = products => {
     console.log("product = ", product);
     str += `Тип кальяна - ${product.title}, количество - ${
       product.count
-    }, вкус - ${product.taste.label}.`;
+    }, вкус - ${product.taste.label}. <br />`;
   });
   return str;
 };
@@ -56,7 +56,7 @@ app.post("/send", (req, res) => {
     subject: "Subject of your email", // Subject line
     html: `<p>Имя: ${req.body.name}</p><p>Телефон: ${
       req.body.phone
-    }</p><p>${createText(req.body.products)}</p>` // plain text body
+    }</p><p>Заказ: <br /> ${createText(req.body.products)}</p>` // plain text body
   };
 
   // send mail with defined transport object
