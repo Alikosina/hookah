@@ -5,31 +5,36 @@ const initialState = [
     title: "Ананас",
     count: 0,
     price: 2000,
-    taste: TASTE_OPTIONS[0]
+    taste: TASTE_OPTIONS[0],
+    tasteValue: TASTE_OPTIONS[0].value
   },
   {
     title: "Глиняная чаша",
     count: 0,
     price: 1400,
-    taste: TASTE_OPTIONS[0]
+    taste: TASTE_OPTIONS[0],
+    tasteValue: TASTE_OPTIONS[0].value
   },
   {
     title: "Грейпфрут",
     count: 0,
     price: 1500,
-    taste: TASTE_OPTIONS[0]
+    taste: TASTE_OPTIONS[0],
+    tasteValue: TASTE_OPTIONS[0].value
   },
   {
     title: "Помело",
     count: 0,
     price: 2200,
-    taste: TASTE_OPTIONS[0]
+    taste: TASTE_OPTIONS[0],
+    tasteValue: TASTE_OPTIONS[0].value
   },
   {
     title: "Дыня",
     count: 0,
     price: 2800,
-    taste: TASTE_OPTIONS[0]
+    taste: TASTE_OPTIONS[0],
+    tasteValue: TASTE_OPTIONS[0].value
   }
 ];
 
@@ -51,12 +56,19 @@ const decreaseCount = (state, action) => {
   return state;
 };
 
+const changeTaste = (state, action) => {
+  state[action.payload.index].taste = action.payload.value;
+  return state;
+};
+
 export default function(state = initialState, action = {}) {
   switch (action.type) {
     case "INCREASE_COUNT":
       return increaseCount(state, action);
     case "DECREASE_COUNT":
       return decreaseCount(state, action);
+    case "CHANGE_TASTE":
+      return changeTaste(state, action);
     default:
       return state;
   }

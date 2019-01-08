@@ -1,5 +1,6 @@
 import * as React from "react";
 import Select from "react-select";
+import { FaPlus, FaMinus } from "react-icons/fa";
 import "./HookahCalculatorItem.scss";
 
 const customStyles = {
@@ -14,6 +15,20 @@ const customStyles = {
 };
 
 export default class HookahCalculatorItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedValue: this.props.product.taste
+    };
+  }
+
+  handleChange = (value, index) => {
+    this.props.changeTaste(value, index);
+    this.setState({
+      selectedValue: value
+    });
+  };
+
   render() {
     const { product, index, options, changeTaste } = this.props;
     return (
@@ -33,7 +48,7 @@ export default class HookahCalculatorItem extends React.Component {
               }}
               className="hookah-calculator-item__counter__symbols__item"
             >
-              +
+              <FaPlus />
             </div>
             <div
               onClick={() => {
@@ -41,7 +56,7 @@ export default class HookahCalculatorItem extends React.Component {
               }}
               className="hookah-calculator-item__counter__symbols__item"
             >
-              -
+              <FaMinus />
             </div>
           </div>
         </div>
@@ -49,10 +64,10 @@ export default class HookahCalculatorItem extends React.Component {
           <Select
             options={options}
             onChange={value => {
-              changeTaste(value, index);
+              this.handleChange(value, index);
             }}
             styles={customStyles}
-            value={product.taste}
+            value={this.state.selectedValue}
           />
         </div>
       </div>

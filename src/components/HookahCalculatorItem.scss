@@ -30,6 +30,9 @@
     margin-bottom: 10px;
     &__number {
       font-size: 25px;
+      @media only screen and (max-width: 375px) {
+        font-size: 30px;
+      }
     }
     &__symbols {
       margin-left: 20px;
@@ -43,7 +46,11 @@
         margin-bottom: 5px;
         padding: 0 5px;
         border-radius: 50%;
-        width: 10px;
+        width: 15px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         @media only screen and (max-width: 375px) {
           margin-right: 4px;
         }

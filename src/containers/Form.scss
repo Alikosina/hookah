@@ -20,4 +20,51 @@
   padding: 0 70px;
   margin: 30px 0;
   font-family: "Roboto";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media only screen and (max-width: 375px) {
+    flex-direction: column;
+  }
+  &__label {
+    margin-right: 10px;
+    @media only screen and (max-width: 375px) {
+      margin-right: 0px;
+      margin-bottom: 5px;
+    }
+  }
+  &__input {
+    font-family: "Roboto";
+    font-size: 16px;
+    border: 1px solid #000;
+    margin-right: 10px;
+    @media only screen and (max-width: 375px) {
+      margin-right: 0px;
+      margin-bottom: 10px;
+    }
+  }
+  &__submit {
+    height: 25px;
+    border: 1px solid #000;
+    background: #fff;
+    font-family: "Roboto Bold";
+    text-transform: uppercase;
+    width: 150px;
+    @media only screen and (max-width: 375px) {
+      width: 100%;
+      margin-top: 15px;
+    }
+  }
+}
+
+.message {
+  text-align: center;
+  font-family: "Roboto";
+  margin-bottom: 30px;
+  &_succeed {
+    color: #28a745 !important;
+  }
+  &_error {
+    color: #dc3545 !important;
+  }
 }

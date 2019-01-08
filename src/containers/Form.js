@@ -8,7 +8,9 @@ class Form extends React.Component {
     this.state = {
       phone: "",
       name: "",
-      active: false
+      active: false,
+      succeed: false,
+      failed: false
     };
   }
   onPhoneChange = e => {
@@ -25,7 +27,6 @@ class Form extends React.Component {
     e.preventDefault();
     const { phone, name } = this.state;
     const { products } = this.props;
-    console.log("value = ", this.state);
     fetch("http://185.178.47.62:8081/send", {
       method: "POST",
       headers: {
@@ -33,7 +34,24 @@ class Form extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ phone, name, products })
-    });
+    })
+      .then(r => {
+        console.log("responseArea!!!!");
+        if (r.status !== 200) {
+          this.setState({
+            failed: true
+          });
+        } else {
+          this.setState({
+            succeed: true
+          });
+        }
+      })
+      .catch(() => {
+        this.setState({
+          failed: true
+        });
+      });
   };
 
   handleClick = () => {
@@ -43,7 +61,7 @@ class Form extends React.Component {
   };
 
   render() {
-    const { active, phone, name } = this.state;
+    const { active, phone, name, succeed, failed } = this.state;
     const { totalPrice } = this.props;
     return (
       <React.Fragment>
@@ -57,25 +75,45 @@ class Form extends React.Component {
           </button>
         </div>
         {active && (
-          <form className="form" onSubmit={this.onSubmit}>
-            <label htmlFor="phone">Телефон</label>
-            <input
-              id="phone"
-              type="text"
-              value={phone}
-              onChange={this.onPhoneChange}
-              placeholder="количество"
-            />
-            <label htmlFor="name">Имя</label>
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={this.onNameChange}
-              placeholder="количество"
-            />
-            <input type="submit" value="Отправить" />
-          </form>
+          <React.Fragment>
+            <form className="form" onSubmit={this.onSubmit}>
+              <label className="form__label" htmlFor="phone">
+                Телефон
+              </label>
+              <input
+                className="form__input"
+                id="phone"
+                type="text"
+                value={phone}
+                onChange={this.onPhoneChange}
+                placeholder="количество"
+              />
+              <label className="form__label" htmlFor="name">
+                Имя
+              </label>
+              <input
+                id="name"
+                type="text"
+                className="form__input"
+                value={name}
+                onChange={this.onNameChange}
+                placeholder="количество"
+              />
+              <button className="form__submit" type="submit" value="Отправить">
+                Отправить
+              </button>
+            </form>
+            {succeed && (
+              <div className="message message_succeed">
+                Ваш заказ успешно оформлен!
+              </div>
+            )}
+            {failed && (
+              <div className="message message_error">
+                Возникли проблемы при отправке!
+              </div>
+            )}
+          </React.Fragment>
         )}
       </React.Fragment>
     );

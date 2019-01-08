@@ -45,11 +45,8 @@ class HookahCalculatorContainer extends React.Component {
   }
 
   changeTaste = (value, index) => {
-    const { products } = this.state;
-    products[index].taste = value;
-    this.setState({
-      products
-    });
+    console.log("here!!!");
+    this.props.changeTaste(index, value);
   };
 
   increaseCount = index => {
@@ -77,6 +74,7 @@ class HookahCalculatorContainer extends React.Component {
   render() {
     const { totalPrice, products } = this.props;
     console.log("test = ", this.props.test);
+    console.log("products = ", products);
     return (
       <React.Fragment>
         <h2 className="hookah-calculator-title">Меню</h2>
@@ -116,6 +114,9 @@ const mapDispatchToProps = dispatch => ({
   },
   decreaseCount: value => {
     dispatch({ type: "DECREASE_COUNT", payload: value });
+  },
+  changeTaste: (index, value) => {
+    dispatch({ type: "CHANGE_TASTE", payload: { index, value } });
   }
 });
 
