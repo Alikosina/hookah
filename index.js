@@ -78,9 +78,7 @@ app.post("/callback", (req, res) => {
     from: "eliavahookah@gmail.com", // sender address
     to: "eliavahookah@gmail.com", // list of receivers
     subject: "Subject of your email", // Subject line
-    html: `<p>Имя: ${req.body.name}</p><p>Телефон: ${
-      req.body.phone
-    }</p><p>Обратный звонок: <br /> ${req.body.phone}</p>` // plain text body
+    html: `<p>Обратный звонок: <br /> ${req.body.callbackPhone}</p>` // plain text body
   };
 
   // send mail with defined transport object
