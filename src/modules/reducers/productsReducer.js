@@ -2,29 +2,33 @@ import { TASTE_OPTIONS } from "../../utils/constants";
 
 const initialState = [
   {
-    title: "Ананас",
-    count: 0,
-    price: 2000,
-    taste: TASTE_OPTIONS[0],
-    tasteValue: TASTE_OPTIONS[0].value
-  },
-  {
-    title: "Глиняная чаша",
-    count: 0,
-    price: 1400,
-    taste: TASTE_OPTIONS[0],
-    tasteValue: TASTE_OPTIONS[0].value
-  },
-  {
     title: "Грейпфрут",
     count: 0,
+    value: "grapefruit",
     price: 1500,
     taste: TASTE_OPTIONS[0],
     tasteValue: TASTE_OPTIONS[0].value
   },
   {
+    title: "Ананас",
+    count: 0,
+    value: "pineapple",
+    price: 2000,
+    taste: TASTE_OPTIONS[0],
+    tasteValue: TASTE_OPTIONS[0].value
+  },
+  // {
+  //   title: "Глиняная чаша",
+  //   count: 0,
+  //   value: "cup",
+  //   price: 1400,
+  //   taste: TASTE_OPTIONS[0],
+  //   tasteValue: TASTE_OPTIONS[0].value
+  // },
+  {
     title: "Помело",
     count: 0,
+    value: "pomelo",
     price: 2200,
     taste: TASTE_OPTIONS[0],
     tasteValue: TASTE_OPTIONS[0].value
@@ -32,6 +36,7 @@ const initialState = [
   {
     title: "Дыня",
     count: 0,
+    value: "melon",
     price: 2800,
     taste: TASTE_OPTIONS[0],
     tasteValue: TASTE_OPTIONS[0].value

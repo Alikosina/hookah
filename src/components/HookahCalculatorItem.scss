@@ -17,6 +17,11 @@
       font-size: 25px;
     }
   }
+  &__icon {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
   &__price {
     margin-bottom: 10px;
     @media only screen and (max-width: 375px) {

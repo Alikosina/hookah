@@ -52,9 +52,9 @@ body {
   margin: 0;
 }
 .main-bg {
-  background-image: url("../../images/embers.jpg");
+  background-image: url("../../images/main.jpg");
   background-size: cover;
-  height: 100vh;
+  height: calc(100vh - 40px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,6 +64,7 @@ body {
   }
   &__text {
     text-align: center;
+    color: #000;
     &__title {
       letter-spacing: 10px;
       font-family: "Roboto Bold";

@@ -71,6 +71,30 @@ app.post("/send", (req, res) => {
   res.send("Success!!!");
 });
 
+app.post("/callback", (req, res) => {
+  console.log("req =", req.body);
+  // setup email data with unicode symbols
+  let mailOptions = {
+    from: "eliavahookah@gmail.com", // sender address
+    to: "eliavahookah@gmail.com", // list of receivers
+    subject: "Subject of your email", // Subject line
+    html: `<p>Имя: ${req.body.name}</p><p>Телефон: ${
+      req.body.phone
+    }</p><p>Обратный звонок: <br /> ${req.body.phone}</p>` // plain text body
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log("Message sent: %s", info.messageId);
+    // Preview only available when sending through an Ethereal account
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  });
+  res.send("Success!!!");
+});
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });

@@ -2,13 +2,34 @@
   padding: 20px 70px;
   border-top: 1px solid #fff;
   font-family: "Roboto";
+  display: flex;
+  justify-content: space-between;
   @media only screen and (max-width: 375px) {
     padding: 20px 10px;
+    flex-direction: column;
   }
   &__phone {
+    @media only screen and (max-width: 375px) {
+      margin-bottom: 10px;
+    }
     &__link {
       text-decoration: none;
       color: #fff;
     }
   }
+  &__socials {
+    display: flex;
+    align-items: center;
+    &__text {
+      margin-right: 5px;
+    }
+    &__link {
+      color: #fff;
+      height: 16px;
+    }
+  }
+}
+
+.footer-mobile-icon {
+  margin-right: 5px;
 }

@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.jsx",
   devtool: "inline-source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -66,5 +66,8 @@ module.exports = {
       template: "./src/index.html"
     })
     // new ExtractTextPlugin()
-  ]
+  ],
+  resolve: {
+    extensions: [".js", ".jsx"]
+  }
 };
