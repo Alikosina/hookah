@@ -8,6 +8,8 @@ import Form from "./Form";
 import HookahCalculatorContainer from "./HookahCalculatorContainer";
 import Footer from "./Footer";
 import Modal from "react-modal";
+import { FaWindowClose } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 const customStyles = {
   content: {
@@ -30,7 +32,8 @@ export default class App extends React.Component {
     this.state = {
       loading: true,
       title: "Eliava's Hookah",
-      callbackPhone: ""
+      callbackPhone: "",
+      isOpen: false
     };
   }
 
@@ -63,18 +66,18 @@ export default class App extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ callbackPhone })
+    }).then(r => {
+      // if (r.status !== 200) {
+      //   this.setState({
+      //     failed: true
+      //   });
+      // } else {
+      this.setState({
+        isOpen: false,
+        callbackPhone: ""
+      });
+      // }
     });
-    // .then(r => {
-    //   if (r.status !== 200) {
-    //     this.setState({
-    //       failed: true
-    //     });
-    //   } else {
-    //     this.setState({
-    //       succeed: true
-    //     });
-    //   }
-    // })
     // .catch(() => {
     //   this.setState({
     //     failed: true
@@ -91,9 +94,9 @@ export default class App extends React.Component {
         <HeaderMenu />
         <div className="main-bg">
           <div className="main-bg__text">
-            <h1 className="main-bg__text__title">ДЫМGO</h1>
+            <div className="main-bg__text__title">ДЫМGO</div>
             <div className="main-bg__text__content">
-              Доставка кальянов по Москве и Московской Области
+              <h1>Доставка кальянов по Москве и Московской Области</h1>
             </div>
           </div>
         </div>
@@ -102,17 +105,36 @@ export default class App extends React.Component {
         <Form />
         <Footer />
         <div className="callback">
-          <i className="Phone is-animating" />
+          <i
+            onClick={() => {
+              this.setState({ isOpen: true });
+            }}
+            className="Phone is-animating"
+          />
         </div>
-        <Modal style={customStyles} isOpen={true}>
-          <h2 className="callback-modal__title">
-            Мы Вам обязательно перезвоним!
-          </h2>
-          <form onSubmit={this.onSubmit} action="">
-            <label htmlFor="callback">Введите телефон </label>
-            <input id="callback" type="text" />
-            <button type="submit">Отправить телефон</button>
-          </form>
+        <Modal style={customStyles} isOpen={this.state.isOpen}>
+          <IconContext.Provider value={{ className: "modal-close-icon" }}>
+            <FaWindowClose
+              onClick={() => {
+                this.setState({
+                  isOpen: false
+                });
+              }}
+            />
+            <h2 style={{ marginTop: "0" }} className="callback-modal__title">
+              Мы Вам обязательно перезвоним!
+            </h2>
+            <form onSubmit={this.onSubmit} action="">
+              <label htmlFor="callback">Введите телефон </label>
+              <input
+                value={this.state.callbackPhone}
+                onChange={this.onChangeCallbackPhone}
+                id="callback"
+                type="text"
+              />
+              <button type="submit">Отправить телефон</button>
+            </form>
+          </IconContext.Provider>
         </Modal>
       </React.Fragment>
     );

@@ -5,7 +5,7 @@ const initialState = [
     title: "Грейпфрут",
     count: 0,
     value: "grapefruit",
-    price: 1500,
+    price: 1300,
     taste: TASTE_OPTIONS[0],
     tasteValue: TASTE_OPTIONS[0].value
   },
@@ -13,7 +13,7 @@ const initialState = [
     title: "Ананас",
     count: 0,
     value: "pineapple",
-    price: 2000,
+    price: 1700,
     taste: TASTE_OPTIONS[0],
     tasteValue: TASTE_OPTIONS[0].value
   },
@@ -37,7 +37,7 @@ const initialState = [
     title: "Дыня",
     count: 0,
     value: "melon",
-    price: 2800,
+    price: 2700,
     taste: TASTE_OPTIONS[0],
     tasteValue: TASTE_OPTIONS[0].value
   }
